@@ -43,12 +43,12 @@ def process (x,cart,countcount,tottalalaal,ting,newting,y,newcart):
 
         if select == '1'or '2' or '3' or '4' or 'c' or 's':
            
-            while select not in 'x' or 'X':
+            while select not in 'x' or 'X' or 'c' or 'C' or '':
                 print(select)
-                if select == '1' or '2' or '3' or '4' or 's' and select != 'c' or 'C':
+                if select != 'c' or 'C':
                     
                     select = itemMenu(ting,newting)
-                
+                    print(select)
                 if select in ('s', 'S'):
                     #os.system('clear')
                     scart(newcart)
@@ -94,7 +94,40 @@ def checkout(cart, yorn,counter,x,newcart):
     if yorn != 'n':
         return
     return cart
+def start(option,newoption,select,x,category_menu,newting,book_list,newlistting,bookoptions,ting,cloth_list,clothingoptions,elect_list,electronicsoptions,travel_list,traveloptions):
+    option = ''
+    newoption = ''
+    select = ''
+    x = ''
+    print(category_menu)
+    newoption = str(input('Please Input an option from the list above  : '))
+    
 
+    newting =[]
+    ting = ''
+    if newoption == '1':
+        newting += book_list
+        newlistting = bookoptions
+        ting = 'Books'
+    if newoption == '2':
+        newting += cloth_list
+        newlistting = clothingoptions
+        ting = 'Clothing'
+    if newoption == '3':
+        newting += elect_list
+        newlistting = electronicsoptions
+        ting = 'Electronics'
+    if newoption == '4':
+        newting += travel_list
+        newlistting = traveloptions
+        ting = 'Travel'
+    else:
+        newoption = newoption
+    if newoption != 'c':
+        process (x,cart,countcount,tottalalaal,ting,newting,y,newcart)
+    elif newoption == 'c':
+        checkout(cart, yorn,counter,x,newcart)
+    return
 
 #def processItems(item_cat, item_list, valid_list, p1_cart):
   #  item_pic = ''
@@ -166,36 +199,13 @@ traveloptions="""
  
 yorn = 'y'
 while yorn == 'y':
-    option = ''
     newoption = ''
-    select = ''
-    x = ''
-    print(category_menu)
-    newoption = str(input('Please Input an option from the list above  : '))
-    
-
-    newting =[]
+    option = ''
     ting = ''
-    if newoption == '1':
-        newting += book_list
-        newlistting = bookoptions
-        ting = 'Books'
-    if newoption == '2':
-        newting += cloth_list
-        newlistting = clothingoptions
-        ting = 'Clothing'
-    if newoption == '3':
-        newting += elect_list
-        newlistting = electronicsoptions
-        ting = 'Electronics'
-    if newoption == '4':
-        newting += travel_list
-        newlistting = traveloptions
-        ting = 'Travel'
-    else:
-        newoption = newoption
-    
-    
+    select =''
+    x = ''
+    y = ''
+    start(option,newoption,select,x,category_menu,newting,book_list,newlistting,bookoptions,ting,cloth_list,clothingoptions,elect_list,electronicsoptions,travel_list,traveloptions)
     if newoption == '1' or '2' or '3' or '4' or 's' or 'c':
        
         select = x
@@ -213,7 +223,6 @@ while yorn == 'y':
         y=''
         
             
-        process (x,cart,countcount,tottalalaal,ting,newting,y,newcart)
         if x == 's':
                 
             scart(newcart)
