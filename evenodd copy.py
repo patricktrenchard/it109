@@ -30,10 +30,11 @@ def scart(newcart):
 def display_cart(newcart, temp):
     for key, value in newcart.items():
         print('{0:25s}'.format(key),'$','{0:8.2f}'.format(value))
+        #tottalalaal += value[0]
     
     
 def final_cart(cart,countcount,counter, tottalalaal):
-    countcount += int((len(cart)) / 2)
+     
     print("total cost of ",countcount, " items in ", counter, "cart(s): $", tottalalaal)
 def process (x,cart,countcount,tottalalaal,ting,newting,y,newcart):
         select = ''
@@ -70,7 +71,8 @@ def process (x,cart,countcount,tottalalaal,ting,newting,y,newcart):
                             title = newting[int(select) - 1][0]
                             price = newting[int(select) - 1][1]
 
-                            tottalalaal+= float(newting[int(select) - 1][1])
+                            #tottalalaal+= float(newting[int(select) - 1][1])
+                            
                             cart[title] = price
                             newcart[title] = price
                             print(cart)
@@ -88,14 +90,13 @@ def checkout(cart, yorn,counter,x,newcart):
     display_cart(newcart,2)
     newcart.clear()
     
-    if option == 'c' or 'C':
-        x = str(input('Do you want another cart y or n  : '))
+    
     yorn = x
     counter += 1
     if yorn != 'n':
         return
     return cart
-def start(option,newoption,select,x,category_menu,newting,book_list,newlistting,bookoptions,ting,cloth_list,clothingoptions,elect_list,electronicsoptions,travel_list,traveloptions):
+def start(counter,countcount,yorn,option,newoption,select,x,category_menu,newting,book_list,newlistting,bookoptions,ting,cloth_list,clothingoptions,elect_list,electronicsoptions,travel_list,traveloptions):
     option = ''
     newoption = ''
     select = ''
@@ -110,24 +111,33 @@ def start(option,newoption,select,x,category_menu,newting,book_list,newlistting,
         newting += book_list
         newlistting = bookoptions
         ting = 'Books'
+        
     if newoption == '2':
         newting += cloth_list
         newlistting = clothingoptions
         ting = 'Clothing'
+        
     if newoption == '3':
         newting += elect_list
         newlistting = electronicsoptions
         ting = 'Electronics'
+        
     if newoption == '4':
         newting += travel_list
         newlistting = traveloptions
         ting = 'Travel'
+        
     else:
         newoption = newoption
     if newoption != 'c':
         process (x,cart,countcount,tottalalaal,ting,newting,y,newcart)
+        countcount +=1
     elif newoption == 'c':
         checkout(cart, yorn,counter,x,newcart)
+        
+        counter += 1
+        
+        yorn = str(input('Do you want another cart y or n  : '))
         if yorn == 'n':
             final_cart(cart,countcount,counter, tottalalaal)
             exit()
@@ -209,7 +219,7 @@ while yorn == 'y':
     select =''
     x = ''
     y = ''
-    start(option,newoption,select,x,category_menu,newting,book_list,newlistting,bookoptions,ting,cloth_list,clothingoptions,elect_list,electronicsoptions,travel_list,traveloptions)
+    start(counter,countcount,yorn,option,newoption,select,x,category_menu,newting,book_list,newlistting,bookoptions,ting,cloth_list,clothingoptions,elect_list,electronicsoptions,travel_list,traveloptions)
     if newoption == '1' or '2' or '3' or '4' or 's' or 'c':
        
         select = x
