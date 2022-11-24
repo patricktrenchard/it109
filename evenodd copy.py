@@ -44,8 +44,8 @@ def process (x,cart,countcount,tottalalaal,ting,newting,y,newcart):
         if select == '1'or '2' or '3' or '4' or 'c' or 's':
            
             while select not in 'x' or 'X':
-            
-                if select != 'n':
+                print(select)
+                if select == '1' or '2' or '3' or '4' or 's' and select != 'c' or 'C':
                     
                     select = itemMenu(ting,newting)
                 
@@ -204,23 +204,19 @@ while yorn == 'y':
             
             #os.system('clear')
             scart(newcart)
-        if newoption == ' c' or '':
+        if newoption == 'c':
             
             checkout(newcart, yorn,counter,x,cart)
-        if newoption == ' c':
-            
-            checkout(newcart, yorn,counter,x,cart)
-        print (select)
+        
         x= newoption
 
         y=''
-        if select != 'x':
+        
             
-            
-            process (x,cart,countcount,tottalalaal,ting,newting,y,newcart)
-            if x == 's':
+        process (x,cart,countcount,tottalalaal,ting,newting,y,newcart)
+        if x == 's':
                 
-                scart(newcart)
+            scart(newcart)
 
         
         if select in 'x' or 'X':
@@ -233,11 +229,12 @@ while yorn == 'y':
         checkout(newcart, yorn,counter,x,cart)
         newcart.clear()
     
-    elif yorn == 'n' or 'N':
+    if yorn == 'n' or 'N':
         final_cart(cart,countcount) 
         print("total cost of ",countcount, " items in ", counter, "cart(s): $", tottalalaal)
         break
-    
+    else:
+        continue
     
         
 
