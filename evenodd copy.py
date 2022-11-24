@@ -32,10 +32,9 @@ def display_cart(newcart, temp):
         print('{0:25s}'.format(key),'$','{0:8.2f}'.format(value))
     
     
-def final_cart(cart,countcount):
+def final_cart(cart,countcount,counter, tottalalaal):
     countcount += int((len(cart)) / 2)
-    for key, value in cart.items():
-        print('{0:25s}'.format(key),'$','{0:8.2f}'.format(value))
+    print("total cost of ",countcount, " items in ", counter, "cart(s): $", tottalalaal)
 def process (x,cart,countcount,tottalalaal,ting,newting,y,newcart):
         select = ''
         select = x
@@ -87,6 +86,8 @@ def process (x,cart,countcount,tottalalaal,ting,newting,y,newcart):
 def checkout(cart, yorn,counter,x,newcart):
     #while True:
     display_cart(newcart,2)
+    newcart.clear()
+    
     if option == 'c' or 'C':
         x = str(input('Do you want another cart y or n  : '))
     yorn = x
@@ -127,6 +128,9 @@ def start(option,newoption,select,x,category_menu,newting,book_list,newlistting,
         process (x,cart,countcount,tottalalaal,ting,newting,y,newcart)
     elif newoption == 'c':
         checkout(cart, yorn,counter,x,newcart)
+        if yorn == 'n':
+            final_cart(cart,countcount,counter, tottalalaal)
+            exit()
     return
 
 #def processItems(item_cat, item_list, valid_list, p1_cart):
@@ -238,10 +242,7 @@ while yorn == 'y':
         checkout(newcart, yorn,counter,x,cart)
         newcart.clear()
     
-    if yorn == 'n' or 'N':
-        final_cart(cart,countcount) 
-        print("total cost of ",countcount, " items in ", counter, "cart(s): $", tottalalaal)
-        break
+   
     else:
         continue
     
